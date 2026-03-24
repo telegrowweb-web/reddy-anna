@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reddy Anna – Official VIP | India's #1 Sports Exchange</title>
+  <meta name="description" content="Join Reddy Anna VIP – India's most trusted sports exchange. Cricket, Tennis, Soccer, Casino & more. Instant ID. Safe & Secure."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://readdyanna.com/?vip"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --r1: #6b0000;
+      --r2: #c8102e;
+      --r3: #ff2d50;
+      --r4: #ffb3bc;
+      --g1: #7a3500;
+      --g2: #e07b00;
+      --g3: #ffcc00;
+      --g4: #fff0a0;
+      --dark: #040101;
+      --dark2: #0c0202;
+      --card: rgba(255,255,255,0.03);
+      --border: rgba(200,16,46,0.2);
+      --txt: #fff8f8;
+      --mut: #7a4040;
+      --green: #00e87a;
+      --gred: #ff3355;
+    }
+
+    html, body {
+      height: 100%; width: 100%;
+      background: var(--dark);
+      font-family: 'Rajdhani', sans-serif;
+      color: var(--txt);
+      overflow: hidden;
+    }
+
+    /* ═══ LAYERED BACKGROUND ═══ */
+    .bg-layer {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    }
+
+    .bg-radial {
+      background:
+        radial-gradient(ellipse 70% 50% at 15% 10%, rgba(127,0,0,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 90%, rgba(200,16,46,0.2) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 50% 50%, rgba(180,80,0,0.07) 0%, transparent 65%),
+        #040101;
+    }
+
+    /* Grid with perspective feel */
+    .bg-grid {
+      background-image:
+        linear-gradient(rgba(200,16,46,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,16,46,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridDrift 30s linear infinite;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    }
+    @keyframes gridDrift {
+      0%  { background-position: 0 0, 0 0; }
+      100%{ background-position: 40px 40px, 40px 40px; }
+    }
+
+    /* Glowing horizontal lines */
+    .bg-lines {
+      background-image:
+        repeating-linear-gradient(
+          0deg, transparent, transparent 79px,
+          rgba(200,16,46,0.04) 80px
+        );
+    }
+
+    /* Scan line */
+    .scan {
+      position: fixed; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,45,80,0.6) 20%, rgba(255,204,0,0.5) 50%, rgba(255,45,80,0.6) 80%, transparent 100%);
+      z-index: 1; pointer-events: none;
+      animation: scanMove 8s linear infinite;
+      filter: blur(0.5px);
+    }
+    @keyframes scanMove {
+      0%  { top:-2px; opacity:0; }
+      5%  { opacity:1; }
+      90% { opacity:0.4; }
+      100%{ top:100%; opacity:0; }
+    }
+
+    /* Corner decorations */
+    .corner {
+      position: fixed; width: 60px; height: 60px;
+      z-index: 2; pointer-events: none;
+    }
+    .corner svg { width: 100%; height: 100%; }
+    .c-tl { top: 12px; left: 12px; }
+    .c-tr { top: 12px; right: 12px; transform: scaleX(-1); }
+    .c-bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+    .c-br { bottom: 12px; right: 12px; transform: scale(-1,-1); }
+
+    /* Floating orbs */
+    .orb { position:fixed; border-radius:50%; filter:blur(100px); z-index:0; pointer-events:none; }
+    .orb1{ width:500px;height:400px;background:rgba(180,0,0,0.18); top:-160px;right:-120px; animation:orbF 14s ease-in-out infinite alternate;}
+    .orb2{ width:350px;height:350px;background:rgba(180,80,0,0.09); bottom:-100px;left:-80px;  animation:orbF 18s ease-in-out infinite alternate-reverse;}
+    .orb3{ width:240px;height:240px;background:rgba(200,16,46,0.07); top:35%;left:-50px;       animation:orbF 11s ease-in-out infinite alternate;}
+    @keyframes orbF{0%{transform:translate(0,0) scale(1)}100%{transform:translate(20px,26px) scale(1.08)}}
+
+    /* Particles */
+    .particles { position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+    .p { position:absolute; border-radius:50%; animation:pUp linear infinite; opacity:0; }
+    @keyframes pUp{
+      0%  {opacity:0;transform:translateY(0) scale(0.3);}
+      15% {opacity:0.9;}
+      85% {opacity:0.3;}
+      100%{opacity:0;transform:translateY(-90px) scale(1.4);}
+    }
+
+    /* ═══ MAIN LAYOUT ═══ */
+    .page {
+      position: relative; z-index: 3;
+      height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 16px 20px 20px;
+      gap: 0;
+    }
+
+    /* ── TOP BADGE ── */
+    .top-badge {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+      animation: fadeUp 0.5s ease both;
+      text-decoration: none;
+    }
+    .badge-line { flex:1; height:1px; max-width:50px;
+      background: linear-gradient(90deg, transparent, rgba(200,16,46,0.6), transparent); }
+    .badge-txt {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 7px; font-weight: 700;
+      letter-spacing: 0.4em; color: rgba(255,179,188,0.7);
+      text-transform: uppercase; white-space: nowrap;
+    }
+
+    /* ── LOGO ── */
+    .logo-link { text-decoration: none; display: block; }
+    .logo-section {
+      display: flex; flex-direction: column; align-items: center;
+      animation: fadeUp 0.5s 0.08s ease both;
+      margin-bottom: 0;
+    }
+
+    .logo-outer { position: relative; width: 100px; height: 100px; }
+
+    /* Outer spinning rings */
+    .ring {
+      position: absolute; border-radius: 50%;
+      border: 1.5px solid transparent;
+    }
+    .ring1 {
+      inset: -7px;
+      background:
+        linear-gradient(var(--dark),var(--dark)) padding-box,
+        conic-gradient(
+          var(--r1) 0%, var(--r3) 25%,
+          var(--g3) 45%, var(--r4) 62%,
+          var(--g2) 78%, var(--r1) 100%
+        ) border-box;
+      animation: ringSpin 4s linear infinite;
+    }
+    .ring2 {
+      inset: -14px; border-color: rgba(200,16,46,0.15);
+      animation: ringSpin 9s linear infinite reverse;
+    }
+    .ring3 {
+      inset: -22px; border-style: dashed;
+      border-color: rgba(255,204,0,0.1);
+      animation: ringSpin 18s linear infinite;
+    }
+    @keyframes ringSpin { to { transform: rotate(360deg); } }
+
+    .logo-img {
+      position: absolute; inset: 0; border-radius: 50%;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle, #1a0404 0%, #0a0000 100%);
+      box-shadow:
+        0 0 0 1px rgba(200,16,46,0.3),
+        0 0 30px rgba(200,16,46,0.25),
+        0 0 60px rgba(200,16,46,0.1),
+        inset 0 0 20px rgba(200,16,46,0.08);
+    }
+    .logo-img img {
+      width: 80%; height: 80%; object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(255,45,80,0.5));
+    }
+    .logo-fallback {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px; color: var(--r3);
+      letter-spacing: 0.06em;
+    }
+
+    /* Corner dots on logo */
+    .ldot { position:absolute; border-radius:50%; }
+    .ld1{width:8px;height:8px;top:-3px;  left:50%;transform:translateX(-50%);background:var(--r3);box-shadow:0 0 12px var(--r2),0 0 4px #fff;}
+    .ld2{width:8px;height:8px;bottom:-3px;left:50%;transform:translateX(-50%);background:var(--r3);box-shadow:0 0 12px var(--r2),0 0 4px #fff;}
+    .ld3{width:6px;height:6px;left:-3px; top:50%; transform:translateY(-50%);background:var(--g3);box-shadow:0 0 10px var(--g2);}
+    .ld4{width:6px;height:6px;right:-3px;top:50%; transform:translateY(-50%);background:var(--g3);box-shadow:0 0 10px var(--g2);}
+
+    /* Verified star badge */
+    .v-badge {
+      position: absolute; bottom: 2px; right: 2px;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: linear-gradient(135deg, #ffdd00, #ff9900);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: #1a0500;
+      border: 2px solid var(--dark); z-index: 3;
+      box-shadow: 0 2px 14px rgba(255,200,0,0.7), 0 0 6px rgba(255,180,0,0.4);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+    @keyframes badgePulse {
+      0%,100%{ box-shadow: 0 2px 14px rgba(255,200,0,0.7); }
+      50%    { box-shadow: 0 4px 24px rgba(255,200,0,1); }
+    }
+
+    .name-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 9px;
+    }
+    .nr-line { width: 28px; height: 1px; }
+    .nr-line.l { background: linear-gradient(90deg, transparent, var(--r2)); }
+    .nr-line.r { background: linear-gradient(90deg, var(--r2), transparent); }
+    .nr-txt {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 7px; font-weight: 700;
+      letter-spacing: 0.25em; color: var(--mut);
+      text-transform: uppercase;
+    }
+
+    /* ── TITLE ── */
+    .title-link { text-decoration: none; display: block; width: 100%; }
+    .title-wrap {
+      text-align: center; margin-top: 10px;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+    .pre-lbl {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 7px; font-weight: 400;
+      letter-spacing: 0.5em; color: rgba(200,16,46,0.6);
+      text-transform: uppercase; margin-bottom: 4px;
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 9vw, 60px);
+      letter-spacing: 0.1em; line-height: 0.95;
+      color: #fff;
+      position: relative;
+    }
+
+    /* Glitch effect on h1 */
+    h1::before, h1::after {
+      content: attr(data-text);
+      position: absolute; top: 0; left: 0; right: 0;
+      overflow: hidden; clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+    h1::before {
+      color: rgba(255,45,80,0.8);
+      animation: glitch1 5s infinite;
+      transform: translateX(-2px);
+    }
+    h1::after {
+      content: attr(data-text);
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      color: rgba(255,204,0,0.5);
+      animation: glitch2 5s infinite;
+      transform: translateX(2px);
+    }
+    @keyframes glitch1 {
+      0%,91%,93%,95%,97%,100% { transform: translateX(-2px); opacity:0; }
+      92%{ transform: translateX(-4px) skewX(-2deg); opacity:1; }
+      94%{ transform: translateX(2px); opacity:1; }
+      96%{ transform: translateX(-2px); opacity:0.7; }
+    }
+    @keyframes glitch2 {
+      0%,91%,93%,95%,97%,100% { transform: translateX(2px); opacity:0; }
+      92%{ transform: translateX(4px) skewX(2deg); opacity:0.8; }
+      94%{ transform: translateX(-2px); opacity:0.8; }
+      96%{ transform: translateX(2px); opacity:0.5; }
+    }
+
+    h1 .r { color: var(--r3); text-shadow: 0 0 30px rgba(255,45,80,1), 0 0 60px rgba(200,16,46,0.5); }
+    h1 .g { color: var(--g3); text-shadow: 0 0 24px rgba(255,204,0,0.9), 0 0 50px rgba(200,100,0,0.5); }
+
+    .tagline {
+      margin-top: 5px;
+      font-size: clamp(9.5px, 2vw, 12px);
+      color: rgba(180,120,120,0.9);
+      font-weight: 500; letter-spacing: 0.04em; line-height: 1.6;
+    }
+    .tagline .hi  { color: var(--r4); font-weight: 700; }
+    .tagline .hi2 { color: var(--g3); font-weight: 700; }
+
+    /* ── STATS ── */
+    .stats-link {
+      text-decoration: none; display: block;
+      width: 100%; max-width: 340px;
+      margin-top: 10px;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+    .stats-row {
+      display: flex; align-items: stretch;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 10px; overflow: hidden;
+      position: relative;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .stats-link:hover .stats-row {
+      border-color: rgba(255,45,80,0.5);
+      box-shadow: 0 0 20px rgba(200,16,46,0.15), inset 0 0 30px rgba(200,16,46,0.03);
+    }
+    /* shimmer on stats */
+    .stats-row::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
+      transform: translateX(-100%);
+      animation: statsShimmer 3s ease-in-out infinite 1s;
+    }
+    @keyframes statsShimmer { to { transform: translateX(100%); } }
+
+    .stat-cell {
+      flex: 1; padding: 9px 5px; text-align: center;
+      position: relative;
+    }
+    .stat-cell + .stat-cell::before {
+      content: ''; position: absolute; left: 0; top: 18%; bottom: 18%;
+      width: 1px; background: rgba(200,16,46,0.2);
+    }
+    .sc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px; letter-spacing: 0.06em; line-height: 1;
+      color: var(--r4);
+    }
+    .sc-num.g { color: var(--g3); }
+    .sc-num.w { color: #fff; }
+    .sc-lbl {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 6.5px; font-weight: 700; color: var(--mut);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 3px;
+    }
+
+    /* ── SPORTS PILLS ── */
+    .pills {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      justify-content: center; width: 100%;
+      margin-top: 10px;
+      animation: fadeUp 0.5s 0.32s ease both;
+    }
+    .pill {
+      text-decoration: none;
+      display: flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(200,16,46,0.2);
+      border-radius: 6px; padding: 5px 11px;
+      font-size: 10.5px; font-weight: 600;
+      color: var(--txt); letter-spacing: 0.04em;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .pill::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,45,80,0.08), transparent);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .pill:hover { border-color: rgba(255,45,80,0.5); transform: translateY(-1px); }
+    .pill:hover::before { opacity: 1; }
+    .pill .pi { font-size: 14px; }
+    .pill .live-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 6px; font-weight: 900;
+      background: linear-gradient(135deg, var(--r2), var(--r3));
+      color: #fff; border-radius: 3px; padding: 1px 5px;
+      letter-spacing: 0.08em;
+      animation: blink 1.4s ease-in-out infinite;
+      box-shadow: 0 0 8px rgba(255,45,80,0.6);
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    /* ── LIVE TICKER ── */
+    .ticker-row {
+      display: flex; gap: 6px; align-items: center;
+      margin-top: 9px;
+      animation: fadeUp 0.5s 0.40s ease both;
+    }
+    .ti {
+      text-decoration: none;
+      display: flex; align-items: center; gap: 5px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(200,16,46,0.15);
+      border-radius: 6px; padding: 5px 10px;
+      font-size: 9px; font-weight: 600; letter-spacing: 0.05em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .ti:hover { border-color: rgba(255,45,80,0.5); background: rgba(255,45,80,0.05); }
+    .tdot {
+      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    .tdot.g { background: var(--green); box-shadow: 0 0 6px var(--green); }
+    .tdot.r { background: var(--gred); box-shadow: 0 0 6px var(--gred); }
+    .tv.g { color: var(--green); }
+    .tv.r { color: var(--gred); }
+    .tl { color: var(--mut); }
+
+    /* ── CTA BUTTON ── */
+    .cta-wrap {
+      width: 100%; max-width: 340px;
+      margin-top: 11px;
+      animation: fadeUp 0.5s 0.48s ease both;
+    }
+
+    @keyframes gSlide { 0%{background-position:0% center} 100%{background-position:300% center} }
+    @keyframes shimmer { 0%{transform:translateX(-100%)} 60%,100%{transform:translateX(110%)} }
+    @keyframes arrowBounce {
+      0%,100%{ transform: translateX(0); }
+      50%    { transform: translateX(5px); }
+    }
+
+    .btn {
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      width: 100%; padding: 11px 20px; border-radius: 10px;
+      background: linear-gradient(90deg, #c8102e 0%, #e8001a 35%, #ff6600 65%, #ffaa00 100%);
+      background-size: 250% auto;
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px; letter-spacing: 0.18em;
+      text-decoration: none; position: relative; overflow: hidden;
+      box-shadow:
+        0 4px 20px rgba(200,16,46,0.55),
+        0 1px 0 rgba(255,255,255,0.12) inset,
+        0 -1px 0 rgba(0,0,0,0.3) inset;
+      animation: gSlide 2.8s linear infinite;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 7px 28px rgba(200,16,46,0.7), 0 1px 0 rgba(255,255,255,0.15) inset;
+    }
+    .btn:active { transform: translateY(1px); }
+
+    /* shine sweep */
+    .btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+      transform: translateX(-100%);
+      animation: shimmer 2.6s ease-in-out infinite;
+    }
+
+    .btn-inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .btn-icon { font-size: 17px; line-height: 1; }
+    .btn-label { letter-spacing: 0.2em; }
+    .btn-arrow {
+      font-size: 16px; opacity: 0.9;
+      animation: arrowBounce 1.6s ease-in-out infinite;
+    }
+
+    /* ── CREDIT ── */
+    .credit {
+      position: fixed; bottom: 7px; left: 0; right: 0;
+      text-align: center; z-index: 100;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      font-size: 9.5px; color: rgba(100,60,60,0.8);
+      letter-spacing: 0.03em;
+    }
+    .credit-sep { width: 1px; height: 10px; background: rgba(200,16,46,0.2); }
+    .credit a {
+      color: var(--r3); text-decoration: none; font-weight: 700;
+      font-family: 'Orbitron', sans-serif; font-size: 8px;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+    .credit a:hover { color: var(--g3); }
+    .credit .agency-link {
+      color: var(--g3);
+      text-shadow: 0 0 8px rgba(255,204,0,0.4);
+    }
+    .credit .agency-link:hover { color: #fff; }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(14px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 480px) {
+      .page { padding: 10px 14px 18px; }
+      .top-badge { margin-bottom: 8px; }
+      .badge-txt { font-size: 6.5px; letter-spacing: 0.28em; }
+      .badge-line { max-width: 30px; }
+      .logo-outer { width: 88px; height: 88px; }
+      .v-badge { width: 22px; height: 22px; font-size: 10px; }
+      .name-row { margin-top: 7px; }
+      h1 { font-size: clamp(30px, 8.5vw, 40px); }
+      .tagline { font-size: 9px; line-height: 1.5; }
+      .stats-link { margin-top: 8px; max-width: 100%; }
+      .stat-cell { padding: 7px 3px; }
+      .sc-num { font-size: 16px; }
+      .sc-lbl { font-size: 5.5px; }
+      .pills { margin-top: 8px; gap: 5px; }
+      .pill { font-size: 9.5px; padding: 5px 8px; }
+      .ticker-row { margin-top: 8px; gap: 5px; }
+      .ti { font-size: 8.5px; padding: 4px 8px; }
+      .cta-wrap { margin-top: 10px; max-width: 100%; }
+      .btn { font-size: 15px; padding: 10px 14px; letter-spacing: 0.14em; }
+      .corner { width: 40px; height: 40px; }
+      .c-tl,.c-tr,.c-bl,.c-br { top: 8px; }
+      .c-tl,.c-bl { left: 8px; }
+      .c-tr,.c-br { right: 8px; }
+      .c-bl,.c-br { bottom: 8px; top: auto; }
+    }
+
+    @media (max-width: 370px) {
+      .logo-outer { width: 76px; height: 76px; }
+      h1 { font-size: 28px; }
+      .sc-num { font-size: 14px; }
+      .pill { font-size: 9px; padding: 4px 7px; }
+      .btn { font-size: 13px; padding: 9px 10px; }
+    }
+
+    @media (min-width: 768px) {
+      .page { padding: 20px 40px 24px; }
+      .logo-outer { width: 116px; height: 116px; }
+      h1 { font-size: 58px; }
+      .tagline { font-size: 13px; }
+      .stats-link { max-width: 420px; margin-top: 12px; }
+      .sc-num { font-size: 23px; }
+      .sc-lbl { font-size: 7px; }
+      .pills { gap: 8px; margin-top: 12px; }
+      .pill { font-size: 11px; padding: 6px 13px; }
+      .cta-wrap { max-width: 420px; margin-top: 13px; }
+      .btn { font-size: 19px; padding: 12px 26px; }
+      .corner { width: 70px; height: 70px; }
+    }
+
+    @media (min-width: 1200px) {
+      .logo-outer { width: 128px; height: 128px; }
+      h1 { font-size: 66px; }
+      .stats-link, .cta-wrap { max-width: 480px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background layers -->
+  <div class="bg-layer bg-radial"></div>
+  <div class="bg-layer bg-grid"></div>
+  <div class="bg-layer bg-lines"></div>
+  <div class="scan"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <!-- Corner decorations -->
+  <div class="corner c-tl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 58V8C2 4.7 4.7 2 8 2H58" stroke="rgba(200,16,46,0.5)" stroke-width="1.5"/>
+      <path d="M2 18V8C2 4.7 4.7 2 8 2H18" stroke="rgba(255,204,0,0.6)" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2.5" fill="rgba(255,45,80,0.8)"/>
+    </svg>
+  </div>
+  <div class="corner c-tr">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 58V8C2 4.7 4.7 2 8 2H58" stroke="rgba(200,16,46,0.5)" stroke-width="1.5"/>
+      <path d="M2 18V8C2 4.7 4.7 2 8 2H18" stroke="rgba(255,204,0,0.6)" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2.5" fill="rgba(255,45,80,0.8)"/>
+    </svg>
+  </div>
+  <div class="corner c-bl">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 58V8C2 4.7 4.7 2 8 2H58" stroke="rgba(200,16,46,0.5)" stroke-width="1.5"/>
+      <path d="M2 18V8C2 4.7 4.7 2 8 2H18" stroke="rgba(255,204,0,0.6)" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2.5" fill="rgba(255,204,0,0.6)"/>
+    </svg>
+  </div>
+  <div class="corner c-br">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 58V8C2 4.7 4.7 2 8 2H58" stroke="rgba(200,16,46,0.5)" stroke-width="1.5"/>
+      <path d="M2 18V8C2 4.7 4.7 2 8 2H18" stroke="rgba(255,204,0,0.6)" stroke-width="1.5"/>
+      <circle cx="2" cy="2" r="2.5" fill="rgba(255,204,0,0.6)"/>
+    </svg>
+  </div>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <main class="page">
+
+    <!-- Top Badge -->
+    <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="top-badge">
+      <div class="badge-line"></div>
+      <div class="badge-txt">🏆 &nbsp; India's #1 Sports Exchange &nbsp; 🏆</div>
+      <div class="badge-line"></div>
+    </a>
+
+    <!-- Logo -->
+    <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="logo-link">
+      <div class="logo-section">
+        <div class="logo-outer">
+          <div class="ring ring1"></div>
+          <div class="ring ring2"></div>
+          <div class="ring ring3"></div>
+          <div class="logo-img">
+            <img
+              src="http://zentryx.fun/wp-content/uploads/2026/03/logo.png"
+              alt="Reddy Anna"
+              onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'logo-fallback\'>RA</span>'"
+            />
+          </div>
+          <div class="ldot ld1"></div>
+          <div class="ldot ld2"></div>
+          <div class="ldot ld3"></div>
+          <div class="ldot ld4"></div>
+          <div class="v-badge">★</div>
+        </div>
+        <div class="name-row">
+          <div class="nr-line l"></div>
+          <span class="nr-txt">Reddy Anna Official</span>
+          <div class="nr-line r"></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Title -->
+    <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="title-link">
+      <div class="title-wrap">
+        <div class="pre-lbl">— Official VIP Platform —</div>
+        <h1 data-text="REDDY ANNA"><span class="r">REDDY</span> <span class="g">ANNA</span></h1>
+        <p class="tagline">
+          <span class="hi">Trusted Since 2020</span> · <span class="hi2">Instant ID · Fast Withdrawal</span> 💰<br/>
+          Cricket · Tennis · Soccer · Casino — Play Like A Pro
+        </p>
+      </div>
+    </a>
+
+    <!-- Stats -->
+    <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="stats-link">
+      <div class="stats-row">
+        <div class="stat-cell">
+          <div class="sc-num">50L+</div>
+          <div class="sc-lbl">Users</div>
+        </div>
+        <div class="stat-cell">
+          <div class="sc-num g">24/7</div>
+          <div class="sc-lbl">Support</div>
+        </div>
+        <div class="stat-cell">
+          <div class="sc-num w">FREE</div>
+          <div class="sc-lbl">Join Now</div>
+        </div>
+        <div class="stat-cell">
+          <div class="sc-num g">5★</div>
+          <div class="sc-lbl">Rated</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Sports Pills -->
+    <div class="pills">
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="pill">
+        <span class="pi">🏏</span>Cricket<span class="live-tag">LIVE</span>
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="pill">
+        <span class="pi">🎾</span>Tennis
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="pill">
+        <span class="pi">⚽</span>Soccer
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="pill">
+        <span class="pi">🐎</span>Horse
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="pill">
+        <span class="pi">🎰</span>Casino
+      </a>
+    </div>
+
+    <!-- Live Ticker -->
+    <div class="ticker-row">
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="ti">
+        <div class="tdot g"></div><span class="tl">IPL</span>&nbsp;<span class="tv g">▲ LIVE</span>
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="ti">
+        <div class="tdot g"></div><span class="tl">NZ vs SA</span>&nbsp;<span class="tv g">▲ 1.86</span>
+      </a>
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="ti">
+        <div class="tdot r"></div><span class="tl">TENNIS</span>&nbsp;<span class="tv r">▼ 1.62</span>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener" class="btn">
+        <span class="btn-inner">
+          <span class="btn-icon">🎯</span>
+          <span class="btn-label">GET VIP ID — JOIN FREE</span>
+          <span class="btn-arrow">→</span>
+        </span>
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Credit line -->
+  <p class="credit">
+    <span>18+ · Play Responsibly</span>
+    <span class="credit-sep"></span>
+    <a href="https://readdyanna.com/?vip" target="_blank" rel="noopener">readdyanna.com</a>
+    <span class="credit-sep"></span>
+    <span>Ads by <a href="https://t.me/+TRlJl628l-FkMWE9" target="_blank" rel="noopener" class="agency-link">@Nexgroww_agency</a></span>
+  </p>
+
+  <script>
+    // Generate particles dynamically
+    const container = document.getElementById('particles');
+    const colors = ['rgba(255,45,80,0.9)', 'rgba(255,204,0,0.8)', 'rgba(200,16,46,0.8)', 'rgba(255,120,0,0.7)'];
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('div');
+      p.className = 'p';
+      const size = Math.random() * 2.5 + 1.5;
+      p.style.cssText = `
+        width:${size}px; height:${size}px;
+        background:${colors[Math.floor(Math.random()*colors.length)]};
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        animation-duration:${6 + Math.random()*6}s;
+        animation-delay:${Math.random()*5}s;
+        box-shadow: 0 0 ${size*3}px ${colors[Math.floor(Math.random()*colors.length)]};
+      `;
+      container.appendChild(p);
+    }
+  </script>
+</body>
+</html>
